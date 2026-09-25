@@ -26,7 +26,7 @@ export default function EditProductPage({ params }: { params: Promise<{ id: stri
             setError('Product not found (or was deleted).');
           }
         }
-      } catch (err) {
+      } catch {
         if (isMounted) setError('Product not found.');
       } finally {
         if (isMounted) setIsLoading(false);

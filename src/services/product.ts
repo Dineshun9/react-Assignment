@@ -10,6 +10,7 @@ export interface Product {
   stock: number;
   thumbnail: string;
   images: string[];
+  reviews?: { reviewerName: string; rating: number; comment: string; date: string }[];
 }
 
 export interface ProductsResponse {

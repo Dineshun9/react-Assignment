@@ -35,7 +35,7 @@ function ProductsContent() {
   const [error, setError] = useState('');
 
   // Update URL function
-  const updateURL = (newParams: Record<string, string | null>) => {
+  const updateURL = React.useCallback((newParams: Record<string, string | null>) => {
     const params = new URLSearchParams(searchParams.toString());
     Object.keys(newParams).forEach(key => {
       if (newParams[key] === null || newParams[key] === '') {
@@ -45,7 +45,7 @@ function ProductsContent() {
       }
     });
     router.push(`${pathname}?${params.toString()}`);
-  };
+  }, [searchParams, router, pathname]);
 
   // Sync debounced search to URL and reset page
   useEffect(() => {

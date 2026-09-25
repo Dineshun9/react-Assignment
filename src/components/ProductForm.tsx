@@ -51,9 +51,10 @@ export default function ProductForm({ initialData, isEdit }: ProductFormProps) {
         router.push(`/products/${initialData.id}`);
       } else {
         // Add flow
-        const added = await productService.addProduct(formData);
+        const payload = { ...formData, images: [formData.thumbnail] };
+        const added = await productService.addProduct(payload);
         // Apply optimistic local update
-        addProductToStore({ ...formData, ...added, id: added.id || Date.now(), images: [formData.thumbnail] });
+        addProductToStore({ ...payload, ...added, id: added.id || Date.now() });
         router.push('/products');
       }
     } catch (err) {
